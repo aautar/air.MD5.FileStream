@@ -1,9 +1,11 @@
 /*
+    md5.air.FileStream.js
+    version 1.1
     
     JavaScript functions to allow MD5 hash on an Adobe Air air.FileStream object.
     Uses and based upon the JavaScript MD5 implementation done by Paul Johnston
 
-    Copyright (c) 2010, Avishkar Autar
+    Copyright (c) 2010-2011, Avishkar Autar
     All rights reserved.
 
     Redistribution and use in source and binary forms, with or without
@@ -158,4 +160,17 @@ function hex_md5_stream(inStream)
 	}
 	
 	return binl2hex(abcd_start);	
+}
+
+
+// v1.1 added binl2hex function in this file b/c it's no longer included in Paul Johnston's code
+function binl2hex(binarray)
+{
+    var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+    var str = "";
+    for (var i = 0; i < binarray.length * 4; i++) {
+        str += hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8 + 4)) & 0xF) +
+           hex_tab.charAt((binarray[i >> 2] >> ((i % 4) * 8)) & 0xF);
+    }
+    return str;
 }
